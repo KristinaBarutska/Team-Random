@@ -1,38 +1,33 @@
 import { Component } from '@angular/core';
-export class Hero {
+export class Recept {
   id: number;
-  name: string;
+  title: string;
 }
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
+const RECEPTS: Recept[] = [
+  { id: 11, title: 'Боб по ловджийски' },
+  { id: 12, title: 'Спагети болонезе' },
+  { id: 13, title: 'Картофи по родопски' },
+  { id: 14, title: 'Телешко варено' },
+  { id: 15, title: 'Яйца по панагюрски' }
 ];
 @Component({
   selector: 'my-app',
   template: `
     <h1>{{title}}</h1>
-    <h2>My Heroes</h2>
-    <ul class="heroes">
-      <li *ngFor="let hero of heroes"
-        [class.selected]="hero === selectedHero"
-        (click)="onSelect(hero)">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    <h2>Рецепти</h2>
+    <ul class="recepts">
+      <li *ngFor="let recept of recepts"
+        [class.selected]="recept === selectedRecept"
+        (click)="onSelect(recept)">
+        <span class="badge">{{recept.id}}</span> {{recept.title}}
       </li>
     </ul>
-    <div *ngIf="selectedHero">
-      <h2>{{selectedHero.name}} details!</h2>
-      <div><label>id: </label>{{selectedHero.id}}</div>
+    <div *ngIf="selectedRecept">
+      <h2>{{selectedRecept.title}} details!</h2>
+      <div><label>id: </label>{{selectedRecept.id}}</div>
       <div>
         <label>name: </label>
-        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+        <input [(ngModel)]="selectedRecept.title" placeholder="name"/>
       </div>
     </div>
   `,
@@ -41,13 +36,13 @@ const HEROES: Hero[] = [
       background-color: #CFD8DC !important;
       color: white;
     }
-    .heroes {
+    .recept {
       margin: 0 0 2em 0;
       list-style-type: none;
       padding: 0;
       width: 15em;
     }
-    .heroes li {
+    .recept li {
       cursor: pointer;
       position: relative;
       left: 0;
@@ -57,20 +52,20 @@ const HEROES: Hero[] = [
       height: 1.6em;
       border-radius: 4px;
     }
-    .heroes li.selected:hover {
+    .recept li.selected:hover {
       background-color: #BBD8DC !important;
       color: white;
     }
-    .heroes li:hover {
+    .recept li:hover {
       color: #607D8B;
       background-color: #DDD;
       left: .1em;
     }
-    .heroes .text {
+    .recept .text {
       position: relative;
       top: -3px;
     }
-    .heroes .badge {
+    .recept .badge {
       display: inline-block;
       font-size: small;
       color: white;
@@ -87,10 +82,10 @@ const HEROES: Hero[] = [
   `]
 })
 export class AppComponent {
-  title = 'Tour of Heroes';
-  heroes = HEROES;
-  selectedHero: Hero;
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
+  title = 'Рецепти!';
+  recepts = RECEPTS;
+  selectedRecept: Recept;
+  onSelect(recept: Recept): void {
+    this.selectedRecept = recept;
   }
 }

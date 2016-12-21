@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-export class Recept {
-  id: number;
-  title: string;
-}
-//test
+import { Recept } from './Recept';
+
 const RECEPTS: Recept[] = [
-  { id: 11, title: 'Боб по ловджийски' },
-  { id: 12, title: 'Спагети болонезе' },
-  { id: 13, title: 'Картофи по родопски' },
-  { id: 14, title: 'Телешко варено' },
-  { id: 15, title: 'Яйца по панагюрски' }
+  { id: 1, title: 'Боб по ловджийски' },
+  { id: 2, title: 'Спагети болонезе' },
+  { id: 3, title: 'Картофи по родопски' },
+  { id: 4, title: 'Телешко варено' },
+  { id: 5, title: 'Яйца по панагюрски' }
 ];
 @Component({
   selector: 'my-app',
@@ -23,14 +20,7 @@ const RECEPTS: Recept[] = [
         <span class="badge">{{recept.id}}</span> {{recept.title}}
       </li>
     </ul>
-    <div *ngIf="selectedRecept">
-      <h2>{{selectedRecept.title}} details!</h2>
-      <div><label>id: </label>{{selectedRecept.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedRecept.title" placeholder="name"/>
-      </div>
-    </div>
+    <my-recept-detail [recept]="selectedRecept"></my-recept-detail>
   `,
   styles: [`
     .selected {

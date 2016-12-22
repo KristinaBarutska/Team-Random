@@ -1,4 +1,4 @@
-export class Recept {
+export class Article {
   id: number;
   title: string;
 }

@@ -1,13 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recept } from './Recept';
-
-const RECEPTS: Recept[] = [
-  { id: 1, title: 'Боб по ловджийски' },
-  { id: 2, title: 'Спагети болонезе' },
-  { id: 3, title: 'Картофи по родопски' },
-  { id: 4, title: 'Телешко варено' },
-  { id: 5, title: 'Яйца по панагюрски' }
-];
+import { ReceptService } from './recept.service';
 @Component({
   selector: 'my-app',
   template: `
@@ -70,12 +63,20 @@ const RECEPTS: Recept[] = [
       margin-right: .8em;
       border-radius: 4px 0 0 4px;
     }
-  `]
+  `],
+  providers: [ReceptService]
 })
-export class AppComponent {
-  title = 'Рецепти!';
-  recepts = RECEPTS;
+export class AppComponent implements OnInit {
+  title = 'Recepts';
+  recepts: Recept[];
   selectedRecept: Recept;
+  constructor(private receptService: ReceptService) { }
+  getRecepts(): void {
+    this.receptService.getRecepts().then(recepts => this.recepts = recepts);
+  }
+  ngOnInit(): void {
+    this.getRecepts();
+  }
   onSelect(recept: Recept): void {
     this.selectedRecept = recept;
   }
